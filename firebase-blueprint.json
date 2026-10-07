@@ -1,0 +1,200 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Fitness profile and physical stats of the user",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "height": { "type": "number" },
+        "weight": { "type": "number" },
+        "fitnessGoal": { "type": "string" },
+        "activityLevel": { "type": "string" },
+        "targetWeight": { "type": "number" },
+        "startingWeight": { "type": "number" },
+        "dailyWaterGoal": { "type": "number" },
+        "dailyCalorieGoal": { "type": "number" },
+        "dailyStepGoal": { "type": "number" },
+        "streak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "name"]
+    },
+    "Workout": {
+      "title": "Workout Session",
+      "description": "Recorded workout session with exercises",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string" },
+        "durationMinutes": { "type": "number" },
+        "caloriesBurned": { "type": "number" },
+        "date": { "type": "string" },
+        "notes": { "type": "string" },
+        "exercises": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "type", "date"]
+    },
+    "Meal": {
+      "title": "Meal Entry",
+      "description": "Recorded meal and nutrition entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "mealType": { "type": "string" },
+        "name": { "type": "string" },
+        "calories": { "type": "number" },
+        "protein": { "type": "number" },
+        "carbs": { "type": "number" },
+        "fat": { "type": "number" },
+        "fiber": { "type": "number" },
+        "date": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "mealType", "name", "date"]
+    },
+    "WaterLog": {
+      "title": "Water Intake Entry",
+      "description": "Recorded water consumption in ml or glasses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "amountMl": { "type": "number" },
+        "date": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "amountMl", "date"]
+    },
+    "WeightLog": {
+      "title": "Weight Log Entry",
+      "description": "Recorded body weight entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "weight": { "type": "number" },
+        "date": { "type": "string" },
+        "notes": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "weight", "date"]
+    },
+    "MeasurementLog": {
+      "title": "Body Measurement Entry",
+      "description": "Recorded body circumference measurements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "waist": { "type": "number" },
+        "chest": { "type": "number" },
+        "arms": { "type": "number" },
+        "hips": { "type": "number" },
+        "thighs": { "type": "number" },
+        "bodyFatPercentage": { "type": "number" },
+        "date": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "date"]
+    },
+    "Goal": {
+      "title": "Fitness Goal",
+      "description": "User created fitness goal with target and current progress",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "targetValue": { "type": "number" },
+        "currentValue": { "type": "number" },
+        "unit": { "type": "string" },
+        "deadline": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "targetValue", "category"]
+    },
+    "DailyActivity": {
+      "title": "Daily Activity Summary",
+      "description": "Recorded steps, distance, active minutes, and burned calories per day",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "steps": { "type": "number" },
+        "distanceKm": { "type": "number" },
+        "activeMinutes": { "type": "number" },
+        "caloriesBurned": { "type": "number" },
+        "date": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "date"]
+    },
+    "WorkoutTemplate": {
+      "title": "Workout Template",
+      "description": "Reusable workout routine template for recurring workouts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string" },
+        "estimatedDurationMinutes": { "type": "number" },
+        "estimatedCaloriesBurned": { "type": "number" },
+        "notes": { "type": "string" },
+        "exercises": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "type"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile document"
+    },
+    "/users/{userId}/workouts/{workoutId}": {
+      "schema": { "$ref": "#/entities/Workout" },
+      "description": "Subcollection for user workouts"
+    },
+    "/users/{userId}/workoutTemplates/{templateId}": {
+      "schema": { "$ref": "#/entities/WorkoutTemplate" },
+      "description": "Subcollection for reusable workout templates"
+    },
+    "/users/{userId}/meals/{mealId}": {
+      "schema": { "$ref": "#/entities/Meal" },
+      "description": "Subcollection for user meals"
+    },
+    "/users/{userId}/water/{waterId}": {
+      "schema": { "$ref": "#/entities/WaterLog" },
+      "description": "Subcollection for user water logs"
+    },
+    "/users/{userId}/weight/{weightId}": {
+      "schema": { "$ref": "#/entities/WeightLog" },
+      "description": "Subcollection for user weight logs"
+    },
+    "/users/{userId}/measurements/{measurementId}": {
+      "schema": { "$ref": "#/entities/MeasurementLog" },
+      "description": "Subcollection for user body measurement logs"
+    },
+    "/users/{userId}/goals/{goalId}": {
+      "schema": { "$ref": "#/entities/Goal" },
+      "description": "Subcollection for user goals"
+    },
+    "/users/{userId}/activity/{activityId}": {
+      "schema": { "$ref": "#/entities/DailyActivity" },
+      "description": "Subcollection for user daily activity tracking"
+    }
+  }
+}

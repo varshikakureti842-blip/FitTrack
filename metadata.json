@@ -1,0 +1,8 @@
+{
+  "name": "FitTrack",
+  "description": "Modern, responsive fitness tracker dashboard to record workouts, nutrition, body measurements, steps, water intake, and AI recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
